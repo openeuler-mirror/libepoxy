@@ -1,13 +1,14 @@
 Name:		 libepoxy
-Version:	 1.5.3
-Release: 	 2
+Version:	 1.5.4
+Release: 	 1
 Summary:	 library work with epoxy runtime 
 License:	 MIT
 URL:		 https://github.com/anholt/%{name}
 Source0:         https://github.com/anholt/%{name}/releases/download/%{version}/%{name}-%{version}.tar.xz 
 
-BuildRequires:   meson gcc mesa-libGL-devel mesa-libEGL-devel mesa-libGLES-devel
+BuildRequires:   meson gcc libGL-devel libEGL-devel libX11-devel
 BuildRequires:   python3 xorg-x11-server-Xvfb mesa-dri-drivers
+BuildRequires:   pkgconfig(gl) pkgconfig(egl) pkgconfig(glesv2)
 
 %description
 A library for handling OpenGL function pointer management.
@@ -54,5 +55,11 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 %doc README.md
 
 %changelog
+* Fri Jun 12 2020 xinghe<xinghe1@huawei.com> - 1.5.4 - 1
+- Type:enhancement
+- ID:NA
+- SUG:NA
+- DESC:update to 1.5.4
+
 * Wed Sep 11 2019 openEuler Buildteam <buildteam@openeuler.org> - 1.5.3 - 2
 - Package init
