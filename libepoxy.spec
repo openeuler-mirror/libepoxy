@@ -1,6 +1,6 @@
 Name:		 libepoxy
 Version:	 1.5.4
-Release: 	 1
+Release: 	 2
 Summary:	 library work with epoxy runtime 
 License:	 MIT
 URL:		 https://github.com/anholt/%{name}
@@ -8,7 +8,7 @@ Source0:         https://github.com/anholt/%{name}/releases/download/%{version}/
 
 BuildRequires:   meson gcc libGL-devel libEGL-devel libX11-devel
 BuildRequires:   python3 xorg-x11-server-Xvfb mesa-dri-drivers
-BuildRequires:   pkgconfig(gl) pkgconfig(egl) pkgconfig(glesv2)
+BuildRequires:   libglvnd-devel pkgconfig(glesv2)
 
 %description
 A library for handling OpenGL function pointer management.
@@ -55,6 +55,9 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 %doc README.md
 
 %changelog
+* Tue Oct 13 2020 hanhui <hanhui15@huawei.com> - 1.5.4 - 2
+- change mesa-libEGL-devel to libglvnd-devel in buildrequires
+
 * Fri Apr 21 2020 yanan <yanan@huawei.com> - 1.5.4 - 1
 - update to 1.5.4
 
