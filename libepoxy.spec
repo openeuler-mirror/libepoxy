@@ -1,5 +1,5 @@
 Name:		 libepoxy
-Version:	 1.5.5
+Version:	 1.5.9
 Release: 	 1
 Summary:	 library work with epoxy runtime 
 License:	 MIT
@@ -8,7 +8,7 @@ Source0:         https://github.com/anholt/%{name}/releases/download/%{version}/
 
 BuildRequires:   meson gcc libGL-devel libEGL-devel libX11-devel
 BuildRequires:   python3 xorg-x11-server-Xvfb mesa-dri-drivers
-BuildRequires:   libglvnd-devel pkgconfig(glesv2)
+BuildRequires:   pkgconfig(glesv2) pkgconfig(gl) pkgconfig(egl)
 
 %description
 A library for handling OpenGL function pointer management.
@@ -37,8 +37,6 @@ applications that want to make use of %{name}.
 xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
     (cat %{_vpath_builddir}/meson-logs/testlog.txt ; exit 1)
 
-%ldconfig_scriptlets
-
 %files
 %defattr(-,root,root)
 %license COPYING
@@ -55,6 +53,9 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 %doc README.md
 
 %changelog
+* Thu Dec 02 2021 xingxing <xingxing9@huawei.com> - 1.5.9-1
+- update to 1.5.9
+
 * Fri Jan 29 2021 zhanzhimin <zhanzhimin@huawei.com> - 1.5.5-1
 - update to 1.5.5
 
