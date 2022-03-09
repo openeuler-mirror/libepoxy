@@ -1,6 +1,6 @@
 Name:		 libepoxy
 Version:	 1.5.9
-Release: 	 1
+Release: 	 2
 Summary:	 library work with epoxy runtime 
 License:	 MIT
 URL:		 https://github.com/anholt/%{name}
@@ -9,6 +9,9 @@ Source0:         https://github.com/anholt/%{name}/releases/download/%{version}/
 BuildRequires:   meson gcc libGL-devel libEGL-devel libX11-devel
 BuildRequires:   python3 xorg-x11-server-Xvfb mesa-dri-drivers
 BuildRequires:   pkgconfig(glesv2) pkgconfig(gl) pkgconfig(egl)
+%ifarch riscv64
+BuildRequires:   pkgconfig(x11) pkgconfig(xorg-macros)
+%endif
 
 %description
 A library for handling OpenGL function pointer management.
@@ -16,6 +19,11 @@ A library for handling OpenGL function pointer management.
 %package	 devel
 Summary:	 Development files for %{name}
 Requires:	 %{name} = %{version}-%{release}
+%ifarch riscv64
+Requires:	 glibc-devel
+Requires:	 pkgconfig(egl)
+Requires:	 pkgconfig(x11)
+%endif
 
 %description 	 devel
 %{name}-devel contains the header files for developing
@@ -27,7 +35,13 @@ applications that want to make use of %{name}.
 %autosetup -n %{name}-%{version} -p1 
 
 %build
-%meson
+%meson         \
+%ifarch riscv64
+ -D glx=no     \
+ -D egl=yes    \
+ -D x11=true   \
+%endif
+ %{nil}
 %meson_build
 
 %install
@@ -53,6 +67,11 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 %doc README.md
 
 %changelog
+* Mon Mar 07 2022 Jingwiw <ixoote@gmail.com> - 1.5.9-2
+- fix support for riscv64
+- allow libopengl to be used when GLX_LIB is missing
+- optimize requires for riscv64 about opengl and x11
+
 * Thu Dec 02 2021 xingxing <xingxing9@huawei.com> - 1.5.9-1
 - update to 1.5.9
 
