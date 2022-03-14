@@ -5,6 +5,7 @@ Summary:	 library work with epoxy runtime
 License:	 MIT
 URL:		 https://github.com/anholt/%{name}
 Source0:         https://github.com/anholt/%{name}/releases/download/%{version}/%{name}-%{version}.tar.xz 
+Patch50001:      real_dlsym.patch  
 
 BuildRequires:   meson gcc libGL-devel libEGL-devel libX11-devel
 BuildRequires:   python3 xorg-x11-server-Xvfb mesa-dri-drivers
@@ -37,7 +38,7 @@ applications that want to make use of %{name}.
 %build
 %meson         \
 %ifarch riscv64
- -D glx=no     \
+ -D glx=yes     \
  -D egl=yes    \
  -D x11=true   \
 %endif
@@ -71,6 +72,7 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 - fix support for riscv64
 - allow libopengl to be used when GLX_LIB is missing
 - optimize requires for riscv64 about opengl and x11
+- fix glx test for riscv64
 
 * Thu Dec 02 2021 xingxing <xingxing9@huawei.com> - 1.5.9-1
 - update to 1.5.9
