@@ -1,6 +1,6 @@
 Name:		 libepoxy
 Version:	 1.5.9
-Release: 	 2
+Release: 	 3
 Summary:	 library work with epoxy runtime 
 License:	 MIT
 URL:		 https://github.com/anholt/%{name}
@@ -68,6 +68,9 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 %doc README.md
 
 %changelog
+* Sat Apr 23 2022 laokz <laokz@foxmail.com> - 1.5.9-3
+- bump release number for the previous commit
+
 * Mon Mar 07 2022 Jingwiw <ixoote@gmail.com> - 1.5.9-2
 - fix support for riscv64
 - allow libopengl to be used when GLX_LIB is missing
