@@ -1,6 +1,6 @@
 Name:		 libepoxy
 Version:	 1.5.9
-Release: 	 1
+Release: 	 2
 Summary:	 library work with epoxy runtime 
 License:	 MIT
 URL:		 https://github.com/anholt/%{name}
@@ -53,6 +53,9 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 %doc README.md
 
 %changelog
+* Wed Oct 26 2022 zhouwenpei <zhouwenpei1@h-partners.com> - 1.5.9-2
+- Rebuild for next release
+
 * Thu Dec 02 2021 xingxing <xingxing9@huawei.com> - 1.5.9-1
 - update to 1.5.9
 
