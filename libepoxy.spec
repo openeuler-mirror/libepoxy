@@ -1,6 +1,6 @@
 Name:		 libepoxy
 Version:	 1.5.9
-Release: 	 2
+Release: 	 3
 Summary:	 library work with epoxy runtime 
 License:	 MIT
 URL:		 https://github.com/anholt/%{name}
@@ -34,8 +34,12 @@ applications that want to make use of %{name}.
 %meson_install
 
 %check
+%ifarch loongarch64
+%meson_test
+%else
 xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
     (cat %{_vpath_builddir}/meson-logs/testlog.txt ; exit 1)
+%endif
 
 %files
 %defattr(-,root,root)
@@ -53,6 +57,9 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 %doc README.md
 
 %changelog
+* Mon Jan 30 2023 Wenlong Zhang <zhangwenlong@loongson.cn> - 1.5.9-3
+- fix build error for loongarch64
+
 * Wed Oct 26 2022 zhouwenpei <zhouwenpei1@h-partners.com> - 1.5.9-2
 - Rebuild for next release
 
