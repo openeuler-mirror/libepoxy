@@ -1,10 +1,11 @@
 Name:		 libepoxy
 Version:	 1.5.10
-Release: 	 1
+Release: 	 2
 Summary:	 library work with epoxy runtime 
 License:	 MIT
 URL:		 https://github.com/anholt/%{name}
 Source0:         https://download.gnome.org/sources/%name/1.5/%{name}-%{version}.tar.xz 
+Patch0001:   add-GLIBC_2.27-to-test-versions-for-riscv.patch
 
 BuildRequires:   meson gcc libGL-devel libEGL-devel libX11-devel
 BuildRequires:   python3 xorg-x11-server-Xvfb mesa-dri-drivers
@@ -57,6 +58,9 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 %doc README.md
 
 %changelog
+* Mon Mar 06 2023 laokz <zhangkai@iscas.ac.cn> - 1.5.10-2
+- add GLIBC_2.27 to test/dlwrap.c for riscv
+
 * Thu Feb 02 2023 zhouwenpei <zhouwenpei1@h-partners.com> - 1.5.10-1
 - update to 1.5.10
 
