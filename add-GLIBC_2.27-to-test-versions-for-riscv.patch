@@ -1,0 +1,10 @@
+--- libepoxy-1.5.10/test/dlwrap.c	2022-02-17 20:56:12.000000000 +0800
++++ libepoxy-1.5.10/test/dlwrap.c.new	2023-03-03 16:29:56.806537593 +0800
+@@ -237,6 +237,7 @@
+          * In the meantime, I'll just keep augmenting this
+          * hard-coded version list as people report bugs. */
+         const char *version[] = {
++            "GLIBC_2.27",
+             "GLIBC_2.17",
+             "GLIBC_2.4",
+             "GLIBC_2.3",
