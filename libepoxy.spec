@@ -1,6 +1,6 @@
 Name:		 libepoxy
 Version:	 1.5.10
-Release: 	 2
+Release: 	 3
 Summary:	 library work with epoxy runtime 
 License:	 MIT
 URL:		 https://github.com/anholt/%{name}
@@ -35,7 +35,7 @@ applications that want to make use of %{name}.
 %meson_install
 
 %check
-%ifarch loongarch64
+%ifarch loongarch64 riscv64
 %meson_test
 %else
 xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
@@ -58,6 +58,9 @@ xvfb-run -d -s "-screen 0 640x480x24" ninja -C %{_vpath_builddir} test || \
 %doc README.md
 
 %changelog
+* Thu May 25 2023 yoo <sunyuechi@iscas.ac.cn> - 1.5.10-3
+- add riscv support
+
 * Mon Mar 06 2023 laokz <zhangkai@iscas.ac.cn> - 1.5.10-2
 - add GLIBC_2.27 to test/dlwrap.c for riscv
 
